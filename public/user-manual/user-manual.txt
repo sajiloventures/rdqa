@@ -1,0 +1,49 @@
+<div>
+<div class="col-md-12">
+<h2 style="text-align: center;"><strong>नियमित रुपमा तथ्यांकको गुणस्तर परीक्षण गर्ने प्रणालि सञ्चालन निर्देशिका, २०७५</strong></h2>
+<h2 style="text-align: justify;"><strong>प्रयोगकर्ताहरुको लागि महत्वपूर्ण जानकारी</strong></h2>
+<p style="font-weight: 400; text-align: justify;">यस प्रणालिमा आफ्नो भुमिकाका आधारमा मुख्यतया तीन प्रकारका प्रयोगकर्ता हुन्छन्। प्रयोगकर्ताले आफ्नो अधिकार भित्र रहेर मात्र यस प्रणालिको प्रयोग गर्न पाँउछन ।समान्य प्रयोगकर्ता: सर्बसाधारण नागरिक । नियमित रुपमा तथ्यांकको गुणस्तर परीक्षण गर्ने प्रणालिको ड्यासबोर्डमा यस प्रणालिका बारेमा सामान्य जानकारी तथा मुख्य उपलब्धिहरुहरु देखाइएको छ। जो सुकै ब्यक्तिले पनि स्वास्थ्य तथा जनसंख्या मन्त्रालयको वेब पेजमा गएर यसलाई हर्न सकिन्छ ।</p>
+<p style="font-weight: 400; text-align: justify;">स्वास्थ्य संस्था तथा निकाय: स्वास्थ्य संस्थाका सवास्थ्य सेवा प्रदायक तथा कर्मचारी र स्थानीय, प्रदेश तथा संघका स्वास्थ्य निकायहरु यस प्रणालिका मुख्य प्रयोगकर्ता हुन । यस्ता प्रयोगकर्ताहरुले आफ्नो स्वास्थ्य संस्था तथा निकाय छनौट गरी यो प्रणालि प्रयोग गर्ने सक्छन, आफ्नो तथा आफु मातहतका निकायको स्थिति हर्न, अनुगमन गर्न, पृष्ठपोषण गर्न सक्छन तर प्रणालिमा कुनै पनि कुरा परिबर्तन गर्न सक्दैनन्।</p>
+<p style="text-align: justify;"><span style="font-weight: 400;">एडमिन युजर: यस प्रणालिमा प्रयोग कर्ता छनौट गर्ने, अधिकार दिने वा नदिने, प्रणालिमा कुनै पनि कुरा परिवर्तन गर्ने सम्पूर्ण अधिकार एडमिन युजरलाई हुन्छ । &nbsp;</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<h2 style="text-align: justify;"><strong>स्वास्थ्य संस्था तथा स्वास्थ्य निकायले यस प्रणालिको प्रयोग गर्ने तरीका </strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">१. स्वास्थ्य तथा जनसंख्या मन्त्रालयको वेब पेजमा जाने (असार २०७५ पछि) &nbsp;। हाललाई www.rdqa.loc</span><a href="http://rdqa.loc">&nbsp;</a><span style="font-weight: 400;">मा लगईन गर्ने । </span></p>
+<p style="text-align: justify;"><span style="font-weight: 400;">२. मूख्य पृष्टमा 'Create Instance' बटन थिच्ने । </span></p>
+<p style="text-align: justify;"><span style="font-weight: 400;">३. सोधिएका जानकारिहरु टाईप गरी 'Sign In' गर्ने ।&nbsp;</span></p>
+<div class="row" style="text-align: justify;">
+<div class="col-md-3"><span style="font-weight: 400;">४. 'Basic Information' पेजमा कार्यक्रमको नाम लेख्ने र आफ्नो सम्बन्धित प्रदेश, जिल्ला, स्थानीय तह र स्वास्थ्य संस्था छनौट गर्ने । प्रदेश छनौट गरे पछि छानिएको प्रदेश भित्रका जिल्लाहरुको मात्र सूचि देखिन्छ । जिल्ला छनौट गरे पछि जिल्ला भित्रका स्थानीय तहहरुको मात्र सूचि देखिन्छ । स्थानीय तह छनौट गरे पछि त्यस स्थानीय तह भित्रका स्वास्थ्य संस्थाहरुको मात्र सूचि देखिन्छ । स्वास्थ्य संस्था छनौट गरे पछि मुल्याङ्कन समूहका सदस्यहरुको बिबरण भर्नु पर्छ। यस पछि 'Next' बटन थोच्नु होस । </span></div>
+<div class="col-md-3">&nbsp;</div>
+<div class="col-md-9"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/1.png" alt="" /></div>
+</div>
+<div class="row" style="text-align: justify;"><span style="font-weight: 400;">यदि त्यस संस्थामा यस भन्दा अघि यो प्रणालि प्रयोग गरिएको भए त्यस बेलाको कार्य योजना देखा पर्छ । यसले अघिको कामको प्रगति समिक्षा गर्न सहयोग पुर्याउछ । &nbsp;</span>
+<h2 style="page-break-before: always;"><strong>सूचकको छनौट</strong></h2>
+<p style="font-weight: 400;">आफ्नो आवस्यकता अनुसार कार्यक्रम छनौट गर्नुहोस र त्यस अन्तरगतका सूचकहरु छनौट गर्नु होस ।</p>
+<div class="col-md-12"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/2.png" alt="" /></div>
+<p style="font-weight: 400;">सूचकहरु भरि सकेपछि 'Save' बटन थिच्नुहोस &nbsp;। अब तपाई 'Data Verification' पेजमा पुग्नुहुन्छ।</p>
+<br />
+<h2 style="page-break-before: always;"><strong>तथ्यांकहरुको पुनर्गणना: Data Verification</strong></h2>
+<span style="font-weight: 400;">यस खण्डमा तपाईले बिभिन्न प्रश्नहरुको जवाफ 'Yes' or 'No' मा लेख्नु पर्दछ । यदि जवाफ 'No' भएमा कैफियत लेख्ने ठाँउमा त्यसको कारण लेख्नु पर्दछ । कारण लेख्नु अनिवार्य हुन्छ, नत्र तपाई यस भन्दा अघि बड्न सक्नु हुन्न। </span></div>
+<div class="row" style="text-align: justify;">
+<div class="col-md-12"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/3.png" alt="" /></div>
+<br /><br />
+<p style="font-weight: 400;">प्रतिवेदन गरिएका तथ्यांकहरुको पुनर्गणना: यस खन्डमा सोधिएका तथ्याङ्कहरु सम्बन्धित रजिष्टर तथा प्रतिबेदनबाट गणना गरि लेख्नु पर्दछ ।</p>
+<br />
+<h2 style="page-break-before: always;"><strong>प्रतिवेदन गरिएका तथ्यांकहरुको पुनर्गणना: Cross Checks </strong></h2>
+<p style="font-weight: 400;">यस खण्डमा यसमा रजिस्टर र प्रतिवेदन बीचका तथ्यांक रुजु गनुपर्दछ । यस अन्तर्गत तथ्यांक परिक्षण गर्न लागिएका सूचकहरुसँग सम्बन्धित तथ्यांकको स्रोत रिजस्टररफारमहरुमा तुलना गर्ने कार्य समावेश गरिएका छन् ।</p>
+<div class="col-md-12"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/4.png" alt="" /><br /><br /></div>
+<p style="font-weight: 400;">डाटा भरिफिकेसन सकियपछि तपाई प्रणालि परिक्षण पेजमा पुग्नु हुन्छ ।</p>
+<br />
+<p style="page-break-before: always;"><strong>प्रणाली परिक्षण:</strong> यो चरणमा सूचना प्रणलीको परिक्षण गरिन्छ । यस चरणमा ६ वटा खण्ड छन। प्रत्यक खण्डमा सोधिएका प्रश्नहरुको <strong>Yes-completely agree</strong>; <strong>Partly</strong>; <strong>No-not at all </strong>र <strong>N/A</strong> ( <strong>Not applicable) </strong>गरी ४ वटा मध्ये सबै भन्दा उपयुक्त जवाफ छनौट गर्नु पर्छ । यदि जवाफ <strong>No-not at all </strong>वा <strong> N/A </strong>भएमा त्यसो हुनुको कारण खुलाउनु पर्दछ । अन्यथा तपाई यस भन्दा अगाडि बड्न सक्नुहुन्न । यहा लेखिएका कारण <strong> / </strong>जानकारिले पछि तथ्य परक योजना बनाउन सहयोग गर्दछ ।</p>
+<div class="col-md-12"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/5.png" alt="" /></div>
+<p style="font-weight: 400;">यो चरण पुरा गरे पछि तपाई &nbsp; <strong>&ldquo;Part 3&rdquo; or &ldquo;Follow up Recommendations and Action Plan&rdquo; सुधारको कार्ययोजना तथा सुझावहरु</strong> &nbsp;चरणमा पुग्नु हुन्छ ।</p>
+</div>
+<div class="row" style="text-align: justify;">&nbsp;</div>
+<div class="row" style="page-break-before: always;">
+<div class="col-md-12" style="text-align: justify;"><strong>सुधारको कार्ययोजना तथा सुझावहरु: </strong> यस चरणमा तपाईले कम्तिमा दुईवटा कार्य योजना बनाउनु पर्दछ ।</div>
+<div class="col-md-12" style="text-align: justify;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/6.png" alt="" /></div>
+<p style="text-align: justify;">यस पछि तपाईले दिनु भऐको सूचना तथा जानकारिका आधारमा ड्यासबोर्डमा रिपोर्ट देख्न सक्नुहुन्छ ।</p>
+<div class="col-md-12" style="text-align: justify;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://rdqa.loc/editor/photos/1/manual/7.png" alt="" /></div>
+<div class="col-md-12" style="text-align: justify;"><img src="http://rdqa.loc/editor/photos/1/manual/8.png" alt="" /></div>
+</div>
+</div>
+</div>

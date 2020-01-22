@@ -1,0 +1,1 @@
+{"result":{"text":"square root of 6 plus space 5 space end root plus space square root of 7 space"},"status":"ok"}

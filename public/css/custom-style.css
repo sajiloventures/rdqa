@@ -1,0 +1,43 @@
+body.smart-style-6 .login-info {
+    overflow: hidden;
+    position: relative;
+}
+body.smart-style-6 .login-info a span {
+    background: rgba(0, 0, 0, 0.47);
+}
+
+.login-info #show-shortcut {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 0 10px;
+}
+div.dataTables_paginate {
+    float: none;
+}
+div.dataTables_length {
+    float: right;
+}
+
+body.smart-style-6 .MessageBoxContainer {
+    max-width: 100%;
+    border-radius: 0px;
+    background: #000000b3;
+    color: #fff;
+}
+body.smart-style-6 #content {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.table {
+    width: 100% !important;
+}
+#ribbon .breadcrumb li:last-child, #ribbon .breadcrumb > .active {
+    color: #2196F3;
+}
+
+.select2-container [aria-disabled="true"] {
+    color: lightgrey;
+}

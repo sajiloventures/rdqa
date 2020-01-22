@@ -1,0 +1,1 @@
+{"result":{"text":"box enclose\nspace space space space space space space space space N a m e space t h i s space o b j e c t space space space space space space space space space\nend enclose"},"status":"ok"}

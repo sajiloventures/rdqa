@@ -1,0 +1,1 @@
+{"result":{"text":"begin mathsize 72px style square end style"},"status":"ok"}
