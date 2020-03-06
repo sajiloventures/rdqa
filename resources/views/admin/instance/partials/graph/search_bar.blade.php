@@ -13,7 +13,11 @@
 
                         <div class="form-group">
                             <div class="input-group">
+                                @if(isset($data['disable_date_picker']) && $data['disable_date_picker']) 
+                                {!! Form::text('from_date', $data['from_date'], ['class' => 'form-control',  'placeholder'=>'From', 'readonly']) !!}
+                                @else
                                 {!! Form::text('from_date', $data['from_date'], ['class' => 'form-control', 'id' => 'from_date', 'placeholder'=>'From']) !!}
+                                @endif
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -23,7 +27,11 @@
 
                         <div class="form-group">
                             <div class="input-group">
+                                  @if(isset($data['disable_date_picker']) && $data['disable_date_picker']) 
+                                {!! Form::text('to_date', $data['to_date'], ['class' => 'form-control', 'placeholder'=>'To','readonly']) !!}
+                                @else
                                 {!! Form::text('to_date', $data['to_date'], ['class' => 'form-control', 'id' => 'to_date', 'placeholder'=>'To']) !!}
+                                @endif
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>

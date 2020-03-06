@@ -386,12 +386,11 @@ class User extends Authenticatable
     public function scopeFilterByRole($query)
     {
         if (\AclHelper::getUserRole() == 'province-user')
-            $query->where($this->table . '.province_user_id', auth()->user()->id);
+            $query->where($this->table . '.province', auth()->user()->province);
         if (\AclHelper::getUserRole() == 'district-user')
-            $query->where($this->table . '.district_user_id', auth()->user()->id);
+            $query->where($this->table . '.district', auth()->user()->district);
         if (\AclHelper::getUserRole() == 'palika-user')
-            $query->where($this->table . '.palika_user_id', auth()->user()->id);
-
+            $query->where($this->table . '.municipality', auth()->user()->municipality);
         return $query;
     }
 

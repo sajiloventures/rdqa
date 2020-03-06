@@ -138,15 +138,59 @@ class QuestionBaseController extends AdminBaseController
     public function getInstancesIdsByRole()
     {
         $instanceIds = [];
-        $instances = Instance::select('instance.id')
+           if (auth()->check()) {
+
+            $role = \AclHelper::getUserRole();
+            if ($role == 'rdqa-admin' || $role == 'super-admin') {
+             $instances = Instance::select('instance.id')
             ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
-            ->whereIn('isd.facility_user_id', $this->getFacilityUsersIdsByRole())
+         //   ->whereIn('isd.facility_user_id', $this->getFacilityUsersIdsByRole())
             ->get();
+              //  return $this->getFacilityUserIds($users);
+            }
+            if ($role == 'province-user') {
+              $instances = Instance::select('instance.id')
+            ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+            ->where('isd.province_name', auth()->user()->province)
+         //   ->whereIn('isd.facility_user_id', $this->getFacilityUsersIdsByRole())
+            ->get();
+            }
+            if ($role == 'district-user') {
+                 $instances = Instance::select('instance.id')
+            ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+            ->where('isd.district_name', auth()->user()->district)->get();
+            }
+            if ($role == 'palika-user') {
+            $instances = Instance::select('instance.id')
+            ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+            ->where('isd.palika_name', auth()->user()->municipality)->get();
+            }
+            if ($role == 'facility-user') {
+             /*   $users = AdminUser::select('id')->where('id', auth()->user()->id)->get();
+                return $this->getFacilityUserIds($users);*/
+            }
+
+
+
+           // dd($instances);
+
+
+
+        
 
         foreach ($instances as $instance)
             array_push($instanceIds, $instance->id);
-
+       // dd($instanceIds);
         return $instanceIds;
+    }
+    else {
+          $instances = Instance::select('instance.id')
+            ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')->get();
+             foreach ($instances as $instance)
+            array_push($instanceIds, $instance->id);
+       // dd($instanceIds);
+        return $instanceIds;
+    }
     }
 
     public function getFacilityUsersIdsByRole()
@@ -154,19 +198,20 @@ class QuestionBaseController extends AdminBaseController
         if (auth()->check()) {
             $role = \AclHelper::getUserRole();
             if ($role == 'rdqa-admin' || $role == 'super-admin') {
-                $users = AdminUser::select('id')->where('palika_user_id', '>', 0)->get();
+                //$users = AdminUser::select('id')->where('palika_user_id', '>', 0)->get();
+                $users = AdminUser::select('id')->get();
                 return $this->getFacilityUserIds($users);
             }
             if ($role == 'province-user') {
-                $users = AdminUser::select('id')->where('palika_user_id', auth()->user()->id)->get();
+                $users = AdminUser::select('id')->where('province', auth()->user()->province)->get();
                 return $this->getFacilityUserIds($users);
             }
             if ($role == 'district-user') {
-                $users = AdminUser::select('id')->where('palika_user_id', auth()->user()->id)->get();
+                $users = AdminUser::select('id')->where('district', auth()->user()->district)->get();
                 return $this->getFacilityUserIds($users);
             }
             if ($role == 'palika-user') {
-                $users = AdminUser::select('id')->where('palika_user_id', auth()->user()->id)->get();
+                $users = AdminUser::select('id')->where('municipality', auth()->user()->municipality)->get();
                 return $this->getFacilityUserIds($users);
             }
             if ($role == 'facility-user') {
@@ -175,7 +220,8 @@ class QuestionBaseController extends AdminBaseController
             }
             return [];
         } else {
-            $users = AdminUser::select('id')->where('palika_user_id', '>', 0)->get();
+           // $users = AdminUser::select('id')->where('palika_user_id', '>', 0)->get();
+            $users = AdminUser::select('id')->get();
             return $this->getFacilityUserIds($users);
         }
     }

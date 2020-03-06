@@ -68,11 +68,15 @@
                                     </p>
                                 </article>
                             @endif
+                            <div class="text-div">
+                            </div>
                         @else
 
                             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                @include($view_path . 'partials.graph.countbar')
 
                                 <div class="widget-body">
+
                                     <ul id="myTab1" class="nav nav-tabs bordered">
                                         @if($data['page_layout'] == 'admin')
                                             <li class="active">
@@ -298,4 +302,102 @@
         });
 
     </script>
+ 
+
+<script>
+var ctx = document.getElementById('dataCountBarChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+   // type: 'horizontalBar',
+
+    data: {
+        labels: [
+         @foreach($data['delivery_data'] as $key=> $value)
+         @if($loop->last)
+       
+    '{{ str_replace(" ", "\\n", $key)}}'
+    @else 
+        '{{ str_replace(" ", "\\n", $key)}}',
+    @endif
+
+@endforeach
+        ],
+        datasets: [{
+           label: '# of Instances',
+         
+            data: [  @foreach($data['delivery_data'] as $key=> $value)
+         @if($loop->last)
+    '{{ $value}}'
+    @else 
+        '{{ $value}}',
+    @endif
+
+@endforeach],
+            backgroundColor: [
+              @foreach($data['delivery_data'] as $key=> $value)
+         @if($loop->last)
+
+                'rgb(51, 125, 165)'
+    @else 
+     
+                 'rgb(51, 125, 165)',
+    @endif
+
+@endforeach
+          
+            ],
+            borderColor: [
+                    @foreach($data['delivery_data'] as $key=> $value)
+         @if($loop->last)
+
+                'rgb(51, 125, 165)'
+    @else 
+     
+                'rgb(51, 125, 165)',
+    @endif
+
+@endforeach
+             
+            ],
+            borderWidth: 1
+        }]
+    },
+     options: {
+        responsive: true,
+          
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes: [{
+          /*       ticks: {
+                callback: function(value) {
+                    return value.substr(0, 15);
+                },
+            },*/
+                // Change here
+                barPercentage: 0.2
+                //maxBarThickness: 100,
+            }]
+        },
+        tooltips: {
+        enabled: true,
+        mode: 'label',
+        callbacks: {
+            title: function(tooltipItems, data) {
+                var idx = tooltipItems[0].index;
+                return 'Title:' + data.labels[idx];//do something with title
+            },
+            label: function(tooltipItems, data) {
+                //var idx = tooltipItems.index;
+                //return data.labels[idx] + ' €';
+                return tooltipItems.xLabel + '...';
+            }
+        }
+    },
+    }
+});
+</script>
 @endsection

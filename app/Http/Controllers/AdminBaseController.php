@@ -158,9 +158,9 @@ class AdminBaseController extends AppBaseController
 
     public function getSelectedFacilityUserIds()
     {
-        $facilityUsers = InstanceSiteDelivery::select('facility_user_id')->groupBy('facility_user_id')->get();
+      //  $facilityUsers = InstanceSiteDelivery::select('facility_user_id')->groupBy('facility_user_id')->get();
         $usersIds = [];
-        foreach ($facilityUsers as $facilityUser) {
+    /*    foreach ($facilityUsers as $facilityUser) {
             if (!in_array($facilityUser->facility_user_id, $usersIds))
                 array_push($usersIds, $facilityUser->facility_user_id);
         }
@@ -172,7 +172,7 @@ class AdminBaseController extends AppBaseController
 
             if (!in_array($users->created_by, $usersIds))
                 array_push($usersIds, $users->created_by);
-        }
+        }*/
 
         return $usersIds;
     }

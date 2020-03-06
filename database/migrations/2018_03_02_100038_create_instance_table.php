@@ -16,7 +16,7 @@ class CreateInstanceTable extends Migration
         Schema::create('instance', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('created_by');
-            $table->integer('name');
+            $table->string('name');
             $table->string('level', 255)->nullable()->comment('Instance created for province, district or municipality');
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();

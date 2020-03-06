@@ -7,19 +7,26 @@ use App\Models\Instance;
 use App\Models\Question;
 use App\Models\QuestionList;
 use App\Models\SiteDeliveryData;
+use App\Models\InstanceSiteDelivery;
 use App\Models\SiteDeliverySystemAssessment;
 use Illuminate\Http\Request;
 use DB, Flash;
-
+use Auth;
 trait InstanceDetailViewTrait {
 
     public function view_detail($id = null)
     {
         $idsByRole = parent::getInstancesIdsByRole();
+        $data['disable_date_picker'] = false;
+
+        if(!Auth::check()){
+        $data['disable_date_picker'] = true;
+        }
 
         if ($id && !in_array($id, $idsByRole))
         {
-            Flash::error(trans($this->trans_path . 'general.error.invalid'))->important();
+          //  Flash::error(trans($this->trans_path . 'general.error.invalid'))->important();
+            Flash::error('Error at top for id')->important();
             return redirect()->route($this->base_route);
         }
 
@@ -29,6 +36,7 @@ trait InstanceDetailViewTrait {
         $data['display_search'] = true;
 
         $data['search_province'] = $this->facilitySearch(request());
+        //dd($this->facilitySubSearch(request()));
 
         if (!$id) {
             $instances = Instance::select('instance.*')
@@ -36,11 +44,12 @@ trait InstanceDetailViewTrait {
                 ->where('instance.built_stage', 'step-4')
                 ->whereIn('instance.id', $idsByRole);
 
+                //dd($idsByRole);
+
             // Function to built instance query for search request
             $request = $_REQUEST;
 //            dd($request);
             list($instances, $data['search_request'], $data['from_date'], $data['to_date']) = $this->searchRequestQueryBuilder($instances, $request);
-
             // get one month data only
             if (!$data['search_request']){
                 $currentMonth = (int) date('m');
@@ -56,15 +65,102 @@ trait InstanceDetailViewTrait {
 
             }
             $instances = $instances->get();
+            $instances_ids  = $instances->map(function($item) {
+                return $item->id;
+            });
 
+           // dd($instances_ids);
+
+
+            //
+
+            $search_by = 'province_name';
+
+        if (isset($request['province_name']) && $request['province_name']) {
+            $search_by = 'district_name';
+        }
+
+        if (isset($request['district_name']) && $request['district_name']) {
+            $search_by = 'palika_name';
+        }
+
+        if (isset($request['palika_name']) && $request['palika_name']) {
+            $search_by = 'facility_name';
+        }
+
+        if (isset($request['hf_name']) && $request['hf_name']) {
+          $search_by = "-1";
+        }
+       
+        if($search_by != "-1"){
+
+             $delivery_data = InstanceSiteDelivery::select('instance_site_delivery.*')
+             ->selectRaw('COUNT(instance_site_delivery.id) as total');
+             
+            // dd($request['district_name']);
+        if (isset($request['palika_name']) && !empty($request['palika_name'])) {
+             $delivery_data->where('instance_site_delivery.palika_name', $request['palika_name']);
+        }
+
+        elseif (isset($request['district_name']) && !empty($request['district_name'])) {
+         $delivery_data->where('instance_site_delivery.district_name', $request['district_name']);
+        }
+        elseif (isset($request['province_name']) && (!empty($request['province_name']))) {
+             $delivery_data->where('instance_site_delivery.province_name', $request['province_name']);
+            }
+       // dd($request['district_name']);
+
+
+             //   ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+             //   ->where('instance.built_stage', 'step-4')
+                $delivery_data = $delivery_data->leftJoin('instance as isd', 'instance_site_delivery.instance_id', '=', 'isd.id')
+                ->where('isd.built_stage', 'step-4')
+                ->whereIn('instance_site_delivery.instance_id', $instances_ids)
+                ->groupBy($search_by)
+                ->pluck('total', $search_by);
+               //dd($delivery_data);
+        }
+        else {
+
+              $delivery_data = InstanceSiteDelivery::select('instance_site_delivery.*')
+             ->selectRaw('COUNT(id) as total')
+             ->groupBy('palika_name')
+             ->where('id', -1)->pluck('total','palika_name');
+             //   ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+             //   ->where('instance.built_stage', 'step-4')
+             //   ->whereIn('instance_site_delivery.instance_id', $idsByRole)->get($search_by, 'total');
+         //      dd($delivery_data);
+
+        }
         } else {
+         //   dd('here');
             $data['display_search'] = false;
             $instances = Instance::whereIn('id', $idsByRole)
                 ->where('id', $id)
                 ->get();
             if ($instances[0]->built_stage != 'step-4')
                 $returnDataOnly = true;
+
+             $delivery_data = InstanceSiteDelivery::select('instance_site_delivery.*')
+             ->selectRaw('COUNT(id) as total')
+             ->groupBy('province_name')->where('id', -1)
+             ->pluck('total','province_name');
         }
+
+       // dd($delivery_data);
+        $temp_delivery_data = array();
+        if(count($delivery_data)> 0){
+            foreach($delivery_data as $key => $value){
+               
+                  $temp_key = preg_replace('/^D?[0-9]{2}/', '', $key);
+                  $temp_key  = trim($temp_key);
+                   $temp_key = str_replace(" ", "\\n", $temp_key);
+
+                   $temp_delivery_data[$temp_key] = $value;
+            }
+        }
+
+        $data['delivery_data'] = $temp_delivery_data;
 
 
         $data['system_assessment_data'] = Question::select('id', 'type_name')
@@ -74,6 +170,7 @@ trait InstanceDetailViewTrait {
             ->get();
 
         $data['instances'] = $instances;
+
         if (count($instances) > 0) {
 
             $data['selected-indicators'] = [];
@@ -131,6 +228,7 @@ trait InstanceDetailViewTrait {
         if (auth()->check())
             $data['page_layout'] = 'admin';
 
+     //   dd($delivery_data);
         return view($this->loadDefaultVars($this->view_path . '.graph_view'), compact('data'));
     }
 

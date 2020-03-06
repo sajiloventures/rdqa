@@ -35,6 +35,7 @@
                 </label>
             </section>
         </div>
+        {{--
         <div class="row">
             <section class="col col-4" style="display: none;">
                 <label class="label">{{ trans($trans_path.'general.columns.province_user') }}</label>
@@ -55,6 +56,7 @@
                 </label>
             </section>
         </div>
+            --}}
 
         <section>
             <label class="label">{{ trans($admin_trans_path.'general.columns.email') }}</label>
