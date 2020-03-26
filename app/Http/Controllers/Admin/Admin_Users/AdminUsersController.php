@@ -79,7 +79,26 @@ class AdminUsersController extends AdminUsersBaseController
 
             })
             ->editColumn('palika_name', function ($users) {
-                 return $users->id != $users->palika_user_id ? $users->palika_name : null;
+              
+                  if($users->user_type == 'super-admin'){
+                    return null;
+                  }
+                elseif($users->user_type == 'rdqa-admin'){
+                    return null;
+                }
+                elseif($users->user_type == 'province-user'){
+                    return null;
+                }
+                elseif($users->user_type == 'district-user'){
+                    return $users->district;
+                }
+                elseif($users->user_type = 'palika-user'){
+                    return $users->municipality;
+                }
+                elseif($users->user_type = 'facility-user'){
+                    return $users->health_post_name;
+                } 
+                // return $users->id != $users->palika_user_id ? $users->palika_name : null;
 
             })
             ->rawColumns(['id', 'user_type', 'status'])

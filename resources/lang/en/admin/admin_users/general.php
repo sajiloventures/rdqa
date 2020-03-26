@@ -69,6 +69,7 @@ return [
 
     'columns'           => [
         'id'                        =>  'ID',
+        'assign_for'                =>  'Assigned For',
         'image'                     =>  'Image',
         'name'                      =>  'Name',
         'user-code'                 =>  'User code',

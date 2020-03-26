@@ -13,7 +13,7 @@
         <th class="text-primary">{{ trans($trans_path.'general.columns.name') }}</th>
         <th class="text-primary">{{ trans($trans_path.'general.columns.email') }}</th>
         <th class="text-primary">{{ trans($trans_path.'general.columns.user_role') }}</th>
-        <th class="text-primary">{{ trans($trans_path.'general.columns.parent_user') }}</th>
+        <th class="text-primary">{{ trans($trans_path.'general.columns.assign_for') }}</th>
         <th class="text-primary">{{ trans($trans_path.'general.columns.status') }}</th>
     </tr>
     </thead>
