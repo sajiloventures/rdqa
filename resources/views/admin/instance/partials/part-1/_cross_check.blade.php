@@ -96,7 +96,7 @@
                         </tr>
                         <tr>
                             <td width="10">{{ $initialCount . '.' . ++$questionNumber }}</td>
-                            <td>{{ $question->if_not_question }}<strong>[B/A]</strong></td>
+                            <td>{{ $question->if_not_question }}<strong>[A/B]</strong></td>
                             {!! $compare_result !!}
                         </tr>
                         <tr>

@@ -322,6 +322,7 @@ var myChart = new Chart(ctx, {
 
 @endforeach
         ],
+        fill: true,
         datasets: [{
            label: '# of Instances',
          
@@ -333,32 +334,12 @@ var myChart = new Chart(ctx, {
     @endif
 
 @endforeach],
-            backgroundColor: [
-              @foreach($data['delivery_data'] as $key=> $value)
-         @if($loop->last)
+            backgroundColor:
 
-                'rgb(51, 125, 165)'
-    @else 
-     
-                 'rgb(51, 125, 165)',
-    @endif
-
-@endforeach
-          
-            ],
-            borderColor: [
-                    @foreach($data['delivery_data'] as $key=> $value)
-         @if($loop->last)
-
-                'rgb(51, 125, 165)'
-    @else 
-     
                 'rgb(51, 125, 165)',
-    @endif
-
-@endforeach
-             
-            ],
+            borderColor: 
+                 
+                'rgb(51, 125, 165)',
             borderWidth: 1
         }]
     },
@@ -386,15 +367,15 @@ var myChart = new Chart(ctx, {
         enabled: true,
         mode: 'label',
         callbacks: {
-            title: function(tooltipItems, data) {
+        /*    title: function(tooltipItems, data) {
                 var idx = tooltipItems[0].index;
                 return 'Title:' + data.labels[idx];//do something with title
-            },
-            label: function(tooltipItems, data) {
+            },*/
+           /* label: function(tooltipItems, data) {
                 //var idx = tooltipItems.index;
                 //return data.labels[idx] + ' €';
                 return tooltipItems.xLabel + '...';
-            }
+            }*/
         }
     },
     }

@@ -1,3 +1,5 @@
+
+
 <script>
 
     var indicatorData = $('.indicatorData');

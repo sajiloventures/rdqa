@@ -8,6 +8,8 @@
 @include($view_path . '.partials.basic_info_script')
 @include($view_path . '.partials.indicator_script')
 
+
+
 <script>
 
     //disable wizard click
@@ -195,6 +197,7 @@
                     $('.requiredEvaluationTeam').slideDown();
                     return false;
                 }
+
 
             },
             'onTabShow': function (tab, navigation, index) {

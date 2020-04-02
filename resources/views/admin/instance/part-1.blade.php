@@ -92,6 +92,7 @@
             });
             var compareA = null;
             var compareB = null;
+
             $('.table').on('input', '.compare_a', function () {
                 var parent = $(this).closest('tbody');
                 var indicatorId = $(this).data('indicator');
@@ -108,13 +109,13 @@
                 var parent = $(this).closest('tbody');
                 var indicatorId = $(this).data('indicator');
                 setCompareValue(parent.find('.compare_a_a[data-indicator="' + indicatorId + '"]'), parent.find('.compare_b_a[data-indicator="' + indicatorId + '"]'));
-                calculatePercentageAndShow(parent.find('.compare_result_' + indicatorId + '_a'), true);
+                calculatePercentageAndShow(parent.find('.compare_result_' + indicatorId + '_a'));
             });
             $('.table').on('input', '.compare_a_b, .compare_b_b', function () {
                 var parent = $(this).closest('tbody');
                 var indicatorId = $(this).data('indicator');
                 setCompareValue(parent.find('.compare_a_b[data-indicator="' + indicatorId + '"]'), parent.find('.compare_b_b[data-indicator="' + indicatorId + '"]'));
-                calculatePercentageAndShow(parent.find('.compare_result_' + indicatorId + '_b'), true);
+                calculatePercentageAndShow(parent.find('.compare_result_' + indicatorId + '_b'));
             });
 
             $('.table').on('input', '.compare_3_a, .compare_3_b', function () {
@@ -151,9 +152,9 @@
                     BbyA = false;
 
                 if (compareA && compareB) {
-                    if (BbyA)
+                   /* if (BbyA)
                         percentage = (compareB / compareA) * 100;
-                    else
+                    else*/
                         percentage = (compareA / compareB) * 100;
                 }
 
@@ -178,7 +179,48 @@
 
             validateForm($("#part1"));
             formWizard($('#part-1-wizard'), $("#part1"));
+
+
         });
     </script>
+
+    <script>
+@foreach($data['questions']['part-1']['type']['b']['question']->questionList as $question)
+@foreach($data['indicators'] as $indicator)
+
+$("[name='part-1[type][b][{{ $question->id }}][{{ $indicator->indicator_id}}][value_a]']").on('change', function() {
+var val = $(this).val();
+console.log($(this).val());
+//$("[name='part-1[type][c][{{$question->id}}][{{$indicator->indicator_id}}][value_a_a]']").each(function(d) {
+    console.log($("[name='part-1[type][c][6][3][value_a_a]']"));
+$("[name='part-1[type][c][6][{{ $indicator->indicator_id}}][value_a_a]']").each(function(){
+   $(this).val(val);
+   console.log('Executed value : '+val);
+
+
+});
+});
+$("[name='part-1[type][b][{{ $question->id }}][{{ $indicator->indicator_id}}][value_b]']").each(function() {
+var val = $(this).val();
+console.log(val);
+//$("[name='part-1[type][c][{{$question->id}}][{{$indicator->indicator_id}}][value_a_a]']").val('9');
+
+
+});
+
+@endforeach
+@endforeach
+
+
+
+$('.compare_a').each(function () {
+    console.log($(this).val());
+});
+$('.compare_a').each(function () {
+
+    console.log($(this).val());
+});
+
+</script>
     @include($view_path . 'partials.parts_common_scripts')
 @endsection

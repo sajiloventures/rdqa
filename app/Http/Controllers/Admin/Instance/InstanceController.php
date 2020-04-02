@@ -118,7 +118,7 @@ class InstanceController extends QuestionBaseController
         $data = [];
         $data['page_title'] = trans($this->trans_path . 'general.page.create.page-title');
 
-        $data += $this->getPreviousInstanceWithOtherRequiredData();
+        $data += $this->getAvoidPreviousInstanceWithOtherRequiredData();
 
         $province = $this->facilitySearch(request());
        // dd($province);
@@ -164,7 +164,7 @@ class InstanceController extends QuestionBaseController
      * @return mixed
      */
 
-    private function getPreviousInstanceWithOtherRequiredData($instance_id = null, $requireOtherData = true)
+    private function getAvoidPreviousInstanceWithOtherRequiredData($instance_id = null, $requireOtherData = true)
     {
         if (\AclHelper::getUserRole() == 'facility-user')
             $data['facility_users'] = [auth()->user()];
@@ -183,6 +183,44 @@ class InstanceController extends QuestionBaseController
 
         $data['previous_instance'] = Instance::select('instance.*')
             ->leftJoin('instance_site_delivery as sd', 'instance.id', '=', 'sd.instance_id')
+			->where('instance.id', 0)
+            ->whereIn('sd.facility_user_id', $facilityUsersIds);
+
+        if ($instance_id)
+            $data['previous_instance']->where('instance.id', '<', $instance_id);
+
+        $data['previous_instance'] = $data['previous_instance']->orderBy('instance.id', 'desc')->first();
+
+        if ($requireOtherData)
+            $data['questions'] = Question::select('id', 'part', 'part_name', 'type', 'type_name')
+                ->where('part', 'part-3')
+                ->get();
+
+        $data['indicator-programs'] = Indicator::select('program')->groupBy('program')->get();
+
+        return $data;
+    }
+	
+	private function getPreviousInstanceWithOtherRequiredData($instance_id = null, $requireOtherData = true)
+    {
+        if (\AclHelper::getUserRole() == 'facility-user')
+            $data['facility_users'] = [auth()->user()];
+        else if (\AclHelper::getUserRole() == 'palika-user')
+            $data['facility_users'] = AdminUser::ByStatus()->where('palika_user_id', auth()->user()->id)->get();
+        else if (\AclHelper::getUserRole() == 'district-user')
+            $data['facility_users'] = AdminUser::ByStatus()->where('district_user_id', auth()->user()->id)->get();
+        else
+            $data['facility_users'] = AdminUser::ByStatus()->where('palika_user_id', '>', 0)->get();
+
+
+        $facilityUsersIds = [];
+
+        foreach ($data['facility_users'] as $fu)
+            array_push($facilityUsersIds, $fu->id);
+
+        $data['previous_instance'] = Instance::select('instance.*')
+            ->leftJoin('instance_site_delivery as sd', 'instance.id', '=', 'sd.instance_id')
+			->where('instance.id', 0)
             ->whereIn('sd.facility_user_id', $facilityUsersIds);
 
         if ($instance_id)

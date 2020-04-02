@@ -526,8 +526,8 @@ class AppHelper
             case 'yes-no':
                 $inputField = '<select name="' . $fieldName . '"' . $other_attributes . ' class="form-control yesNoCheck" required>' .
                     '<option value=""></option>' .
-                    '<option value="yes" ' . (($value && $value == 1) ? 'selected' : null) . '>छन</option>' .
-                    '<option value="no" ' . (($value !== null && $value == 0) ? 'selected' : null) . '>छैनन</option>' .
+                    '<option value="yes" ' . (($value && $value == 1) ? 'selected' : null) . '>छ</option>' .
+                    '<option value="no" ' . (($value !== null && $value == 0) ? 'selected' : null) . '>छैन</option>' .
                     '</select>';
 
                 break;
