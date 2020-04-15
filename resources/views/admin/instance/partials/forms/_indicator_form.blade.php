@@ -107,11 +107,13 @@
             <section class="col col-sm-12 form-group">
                 <label class="control-label">{{ trans($trans_path.'general.columns.cross-check-1') }}</label>
                 <label class="select">
-                    <select class="form-control" name="indicator_cross_check_1_a" id="indicator_cross_check_1_a">
-                        <option value="">{{ trans($trans_path.'general.indicator.select-compare-sheet') }}</option>
+                    <select class="form-control" disabled=""   name="indicator_cross_check_1_a" id="indicator_cross_check_1_a">
+                        <option value="1" selected>Register vs Tally sheet</option>
+                        {{--
                         @foreach($data['compareSheets'] as $compareSheet)
                             <option value="{{ $compareSheet->id }}">{{ $compareSheet->name . ($compareSheet->name_2 ? ' vs ' . $compareSheet->name_2 : null) }}</option>
                         @endforeach
+                            --}}
                     </select>
                     <i></i>
                     <span class="errorSpan text-danger" style="display: none;">This field is required</span>
@@ -120,11 +122,8 @@
             <section class="col col-sm-12 form-group">
                 <label class="control-label">{{ trans($trans_path.'general.columns.cross-check-2') }}</label>
                 <label class="select">
-                    <select class="form-control" name="indicator_cross_check_2_a" id="indicator_cross_check_2_a">
-                        <option value="">{{ trans($trans_path.'general.indicator.select-compare-sheet') }}</option>
-                        @foreach($data['compareSheets'] as $compareSheet)
-                            <option value="{{ $compareSheet->id }}">{{ $compareSheet->name . ($compareSheet->name_2 ? ' vs ' . $compareSheet->name_2 : null) }}</option>
-                        @endforeach
+                    <select class="form-control" disabled="" name="indicator_cross_check_2_a" id="indicator_cross_check_2_a">
+                        <option value="2" selected>Register vs Monthly monitoring sheet</option>
                     </select>
                     <i></i>
                     <span class="errorSpan text-danger" style="display: none;">This field is required</span>
@@ -134,11 +133,9 @@
                 <label class="control-label">{{ trans($trans_path.'general.columns.cross-check-3') }}</label>
                 <label class="select">
 
-                    <select class="form-control" name="indicator_cross_check_3_a" id="indicator_cross_check_3_a">
-                        <option value="">{{ trans($trans_path.'general.indicator.select-compare-sheet') }}</option>
-                        @foreach($data['compareSheets'] as $compareSheet)
-                            <option value="{{ $compareSheet->id }}">{{ $compareSheet->name . ($compareSheet->name_2 ? ' vs ' . $compareSheet->name_2 : null) }}</option>
-                        @endforeach
+                    <select class="form-control" disabled="" name="indicator_cross_check_3_a" id="indicator_cross_check_3_a">
+                        <option value="3" >Tally vs Monthly monitoring sheet</option>
+                       
                     </select>
                     <i></i>
                 </label>

@@ -12,7 +12,14 @@
         var data = getData();
         if (!checkAndShowErrorOfIndicator(data)) {
             addIndicatorRow(data);
+          
             clearForm(indicatorForm);
+           // console.log(data.indicator_cross_check_1_a);
+           // console.log(data.indicator_cross_check_1_a_text);
+            $('#indicator_cross_check_1_a').prop('selectedIndex', 0);
+            $('#indicator_cross_check_2_a').prop('selectedIndex', 0);
+            $('#indicator_cross_check_3_a').prop('selectedIndex', 0);
+            //$("#indicator_cross_check_1_a option:first").attr('selected','selected');
         }
     });
 
@@ -41,11 +48,11 @@
             hasError = true;
         }
 
-//        if(!data.indicator_cross_check_2_a)
-//        {
-//            indicatorForm.find('#indicator_cross_check_2_a').closest('.form-group').addClass('has-error').find('.errorSpan').show();
-//            hasError = true;
-//        }
+        if(!data.indicator_cross_check_2_a)
+        {
+            indicatorForm.find('#indicator_cross_check_2_a').closest('.form-group').addClass('has-error').find('.errorSpan').show();
+            hasError = true;
+        }
 
         if(!data.indicator_from_date)
         {
@@ -124,9 +131,9 @@
 
         indicatorForm.find('#indicator_program').val($parentTr.find('.program').val()).trigger('change');
         indicatorForm.find('#indicator_indicator').val($parentTr.find('.indicator').val()).trigger('change');
-        indicatorForm.find('#indicator_cross_check_1_a').val($parentTr.find('.cross_check_1_a').val()).trigger('change');
-        indicatorForm.find('#indicator_cross_check_2_a').val($parentTr.find('.cross_check_2_a').val()).trigger('change');
-        indicatorForm.find('#indicator_cross_check_3_a').val($parentTr.find('.cross_check_3_a').val()).trigger('change');
+        //indicatorForm.find('#indicator_cross_check_1_a').val($parentTr.find('.cross_check_1_a').val()).trigger('change');
+        //indicatorForm.find('#indicator_cross_check_2_a').val($parentTr.find('.cross_check_2_a').val()).trigger('change');
+        //indicatorForm.find('#indicator_cross_check_3_a').val($parentTr.find('.cross_check_3_a').val()).trigger('change');
         indicatorForm.find('#indicator_from_date').val($parentTr.find('.from_date').val());
         indicatorForm.find('#indicator_to_date').val($parentTr.find('.to_date').val());
         indicatorForm.find('#indicator_from_date_eng').val($parentTr.find('.from_date_eng').val());
@@ -166,6 +173,7 @@
             indicatorForm.find('.updateIndicator').hide();
             $parentTr = null;
             clearForm(indicatorForm);
+            
         }
     });
 
@@ -196,7 +204,7 @@
         return value && indicatorData.find('[value="' + value + '"].indicator').length > 0;
 
     }
-
+    /*
     indicatorForm.find('#indicator_cross_check_1_a').on('change', function () {
         makeDisabled();
     });
@@ -233,5 +241,7 @@
 //        selector_2_a.select2();
 //        selector_3_a.select2();
     }
+
+    */
 
 </script>

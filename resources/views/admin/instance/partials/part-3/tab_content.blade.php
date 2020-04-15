@@ -89,7 +89,6 @@
                                     <table class="table table-striped table-hovered table-bordered actionPlanTable">
                                         <thead>
                                         <tr>
-                                            <th>Type</th>
                                             @foreach($data['questions']['part-3']['type'] as $type)
                                                 <th>{{ $type['name'] }}</th>
                                             @endforeach
@@ -107,11 +106,10 @@
                                                             <option value="{{ $sAd->id }}" {{ $aPlan->question_id == $sAd->id ? 'selected' : null}}>{{ $sAd->type_name }}</option>
                                                         @endforeach
                                                     </select>
-                                                </td>
-                                                <td>
                                                     <input type="hidden" name="plan_id[]" class="form-control" value="{{ $aPlan->id }}">
-                                                    <input type="text" name="identified[]" class="form-control identifiedInput" value="{{ $aPlan->weakness }}">
+                                                    <input type="hidden" name="identified[]" class="form-control identifiedInput" value="{{ $aPlan->weakness }}">
                                                 </td>
+                                               
                                                 <td>
                                                     <input type="text" name="description[]" class="form-control identifiedInput" value="{{ $aPlan->description }}">
                                                 </td>

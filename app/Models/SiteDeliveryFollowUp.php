@@ -31,4 +31,7 @@ class SiteDeliveryFollowUp extends Model
     {
         return $this->belongsTo('App\Models\Question', 'question_id');
     }
+    public function instance(){
+        return $this->belongsTo('App\Models\Instance');
+    }
 }

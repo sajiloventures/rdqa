@@ -83,8 +83,8 @@
                 id = parent.find('tr:last-child').attr('id');
 
             var html = '<tr id="' + (++id) + '">\n' + systemAssessmentSelectHtml +
-                '<td><input type="hidden" name="plan_id[]" class="form-control" />' +
-                '<input type="text" name="identified[]" class="form-control identifiedInput" /></td>\n' +
+                '<td style="display:none"><input type="hidden" name="plan_id[]" class="form-control" />' +
+                '<input type="text" name="identified[]" class="form-control identifiedInput" value="nn"/></td>\n' +
                 '<td><input type="text" name="description[]" class="form-control identifiedInput" /></td>\n' +
                 '<td><input type="text" name="responsible[]" class="form-control identifiedInput" /></td>\n' +
                 '<td><input type="text" id="timeLine_' + id + '" name="timeLine[]" class="form-control timeLine identifiedInput" />' +
@@ -192,5 +192,6 @@
                 $('.showHideButton').removeClass('btn-danger').addClass('btn-primary').html(showText);
             }
         }
+
     </script>
 @endsection

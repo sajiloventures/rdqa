@@ -21,7 +21,6 @@
                     <tr>
                         <th class="text-center">Site</th>
                         <th class="text-center">SN</th>
-                        <th class="text-center">Type</th>
                         @foreach($data['action-plan-question'] as $ques)
                             <th>{{$ques->type_name}}</th>
                         @endforeach
@@ -41,11 +40,22 @@
                                 @endif
                                 <td>{{ ++$instanceCount }}</td>
                                 <td>{{ $followUp->question ? $followUp->question->type_name : null  }}</td>
-                                <td>{{$followUp->weakness}}</td>
+                               
                                 <td>{{$followUp->description}}</td>
                                 <td>{{$followUp->responsible}}</td>
                                 <td>{{$followUp->time_line}}</td>
-                                <td><i class="fa fa-{{$followUp->completed == 1 ? 'check text-success' : 'remove text-danger'}}"></i></td>
+                                <td><i class="fa fa-{{$followUp->completed == 1 ? 'check text-success' : 'remove text-danger'}}"></i>
+                                    @if(\Auth::check())
+                                    {{--
+                                    @if(\Auth::user()->id == $instance->created_by)
+                                        --}}
+                                    <button class="btn btn-green" onclick="request_access(this)" id="{{ $followUp->id }}">Mark completed</button>
+                                    {{--
+                                    @endif
+                                        --}}
+                                    @endif
+
+                                </td>
                             </tr>
                         @endforeach
                     @endforeach

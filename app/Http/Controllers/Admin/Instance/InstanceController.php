@@ -61,7 +61,7 @@ class InstanceController extends QuestionBaseController
             ->leftJoin('instance_indicators as ii', 'instance.id', '=', 'ii.instance_id')
             ->leftJoin('indicator as ind', 'ii.indicator_id', '=', 'ind.id')
             ->whereIn('instance.id', parent::getInstancesIdsByRole())
-            ->groupBy('instance.id')
+            ->groupBy('instance.id')->orderBy('instance.id','desc')
             ->get();
 
         $data['questions'] = Question::select('part', 'part_name')->groupBy(['part', 'part_name'])->get();
@@ -77,7 +77,7 @@ class InstanceController extends QuestionBaseController
             ->leftJoin('instance_indicators as ii', 'instance.id', '=', 'ii.instance_id')
             ->leftJoin('indicator as ind', 'ii.indicator_id', '=', 'ind.id')
             ->whereIn('instance.id', parent::getInstancesIdsByRole())
-            ->groupBy('instance.id');
+            ->groupBy('instance.id')->orderBy('instance.id','desc');
 
         return Datatables::of($data)
             ->editColumn('built_stage', function ($instance) {
@@ -113,12 +113,24 @@ class InstanceController extends QuestionBaseController
             ->make(true);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $id= 0;
+        if($request->hasCookie('id') != false){
+            $id = $request->cookie('id');
+        }
+        if(request()->has('id')){
+            $id = request()->get('id');
+        }
         $data = [];
         $data['page_title'] = trans($this->trans_path . 'general.page.create.page-title');
-
-        $data += $this->getAvoidPreviousInstanceWithOtherRequiredData();
+     /*   if($id  == 0){
+        $data += $this->getPreviousInstanceWithOtherRequiredData();
+        }
+        else 
+        {*/
+           $data += $this->getInstanceWithOtherRequiredData($id);
+       // }
 
         $province = $this->facilitySearch(request());
        // dd($province);
@@ -128,7 +140,6 @@ class InstanceController extends QuestionBaseController
         $data['enable_dd_change'] = 'yes';
         $data['enable_pr_change'] = 'yes';
         $data['enable_pa_change'] = 'yes';
-        $data['enable_hf_change'] = 'yes';
 
         $data['user'] = auth()->user();
         if (\AclHelper::getUserRole() === 'province-user') {
@@ -137,13 +148,13 @@ class InstanceController extends QuestionBaseController
         else if (\AclHelper::getUserRole() === 'district-user') {
         $data['enable_pa_change'] = 'yes';
         $data['enable_dd_change'] = 'no';
-            $data['enable_pr_change'] = 'no';
+        $data['enable_pr_change'] = 'no';
         $data['enable_hf_change'] = 'yes';
         } else if (\AclHelper::getUserRole() === 'facility-user') {
         $data['enable_pa_change'] = 'no';
         $data['enable_dd_change'] = 'no';
-            $data['enable_pr_change'] = 'no';
-            $data['enable_hf_change'] = 'no';
+        $data['enable_pr_change'] = 'no';
+        $data['enable_hf_change'] = 'no';
         } else if (\AclHelper::getUserRole() === 'palika-user') {
         $data['enable_pa_change'] = 'no';
         $data['enable_dd_change'] = 'no';
@@ -221,6 +232,44 @@ class InstanceController extends QuestionBaseController
         $data['previous_instance'] = Instance::select('instance.*')
             ->leftJoin('instance_site_delivery as sd', 'instance.id', '=', 'sd.instance_id')
 			->where('instance.id', 0)
+            ->whereIn('sd.facility_user_id', $facilityUsersIds);
+
+        if ($instance_id)
+            $data['previous_instance']->where('instance.id', '<', $instance_id);
+
+        $data['previous_instance'] = $data['previous_instance']->orderBy('instance.id', 'desc')->first();
+
+        if ($requireOtherData)
+            $data['questions'] = Question::select('id', 'part', 'part_name', 'type', 'type_name')
+                ->where('part', 'part-3')
+                ->get();
+
+        $data['indicator-programs'] = Indicator::select('program')->groupBy('program')->get();
+
+        return $data;
+    }
+
+
+    private function getInstanceWithOtherRequiredData($instance_id = null, $requireOtherData = true)
+    {
+        if (\AclHelper::getUserRole() == 'facility-user')
+            $data['facility_users'] = [auth()->user()];
+        else if (\AclHelper::getUserRole() == 'palika-user')
+            $data['facility_users'] = AdminUser::ByStatus()->where('palika_user_id', auth()->user()->id)->get();
+        else if (\AclHelper::getUserRole() == 'district-user')
+            $data['facility_users'] = AdminUser::ByStatus()->where('district_user_id', auth()->user()->id)->get();
+        else
+            $data['facility_users'] = AdminUser::ByStatus()->where('palika_user_id', '>', 0)->get();
+
+
+        $facilityUsersIds = [];
+
+        foreach ($data['facility_users'] as $fu)
+            array_push($facilityUsersIds, $fu->id);
+
+        $data['previous_instance'] = Instance::select('instance.*')
+            ->leftJoin('instance_site_delivery as sd', 'instance.id', '=', 'sd.instance_id')
+            ->where('instance.id', $instance_id)
             ->whereIn('sd.facility_user_id', $facilityUsersIds);
 
         if ($instance_id)
@@ -675,6 +724,35 @@ class InstanceController extends QuestionBaseController
         return redirect()->route($this->base_route);
 
     }
+
+
+
+    public function mark_change(Request $request){
+        $ids = $request->all();
+        $r_data = array();
+        $r_data['value'] = 0;
+       // return $ids;
+        $id = $ids['request_data'];
+        if(\Auth::check()){
+            $data  = SiteDeliveryFollowUp::find($id);
+            if($data){
+                if($data->completed == 0){
+                $data->completed = 1; 
+                $r_data['value'] = 1;
+                }
+
+
+                else{
+                    $data->completed = 0;
+                    $r_data['value'] = 0;
+                }
+            $data->save();
+            }
+
+        }
+        return $r_data;
+    }
+
 
 
 }

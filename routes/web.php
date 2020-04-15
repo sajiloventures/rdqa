@@ -39,6 +39,8 @@ Route::group(['middleware' => 'impersonate'], function () {
     Route::get('view-detail', ['as' => 'view-detail', 'uses' => 'Admin\DashboardController@index']);
     Route::get('get-facility', ['as' => 'get-facility',   'uses' => 'Admin\Instance\InstanceController@facilitySearch']);
 
+    Route::post('request_access','Admin\Instance\InstanceController@mark_change');
+
     /**
      *admin section start
      **/

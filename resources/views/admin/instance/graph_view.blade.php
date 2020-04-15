@@ -343,8 +343,9 @@ var myChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
+
      options: {
-        responsive: true,
+           responsive: true,
           
         scales: {
             yAxes: [{
@@ -356,6 +357,8 @@ var myChart = new Chart(ctx, {
           /*       ticks: {
                 callback: function(value) {
                     return value.substr(0, 15);
+     tooltips: {
+                    enabled: true
                 },
             },*/
                 // Change here
@@ -363,22 +366,52 @@ var myChart = new Chart(ctx, {
                 //maxBarThickness: 100,
             }]
         },
-        tooltips: {
-        enabled: true,
-        mode: 'label',
-        callbacks: {
-        /*    title: function(tooltipItems, data) {
-                var idx = tooltipItems[0].index;
-                return 'Title:' + data.labels[idx];//do something with title
-            },*/
-           /* label: function(tooltipItems, data) {
-                //var idx = tooltipItems.index;
-                //return data.labels[idx] + ' €';
-                return tooltipItems.xLabel + '...';
-            }*/
-        }
-    },
+     tooltips: {
+                    enabled: true
+                },
+                hover: {
+                    animationDuration: 1
+                },
+                animation: {
+                    duration: 1,
+                    onComplete: function () {
+                        var chartInstance = this.chart,
+                            ctx = chartInstance.ctx;
+                        ctx.textAlign = 'center';
+                        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+                        ctx.textBaseline = 'bottom';
+
+                        this.data.datasets.forEach(function (dataset, i) {
+                            var meta = chartInstance.controller.getDatasetMeta(i);
+                            meta.data.forEach(function (bar, index) {
+                                var data = dataset.data[index];
+                                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+
+                            });
+                        });
+                    }
+                }
     }
 });
+</script>
+<script>
+
+    function request_access($this){
+        //console.log("button clicked");
+        var request_data = $this.id;
+        console.log("data: " + request_data)
+        $.post( "{{ url('/') }}/request_access",{ request_data: request_data})
+        .done(function(data) {
+            var val = data.value;
+            if(data.value == 1){
+                 $($this).prev('i').removeClass().addClass('fa fa-check text-success');
+            }
+            else {
+                $($this).prev('i').removeClass().addClass('fa fa-remove text-danger');
+            }
+          //alert("Data Loaded: " + data.value);
+          //Or return data;
+        });
+    }
 </script>
 @endsection

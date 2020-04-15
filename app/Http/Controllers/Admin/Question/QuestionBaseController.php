@@ -166,6 +166,9 @@ class QuestionBaseController extends AdminBaseController
             ->where('isd.palika_name', auth()->user()->municipality)->get();
             }
             if ($role == 'facility-user') {
+                  $instances = Instance::select('instance.id')
+            ->leftJoin('instance_site_delivery as isd', 'instance.id', '=', 'isd.instance_id')
+            ->where('isd.facility_name', auth()->user()->health_post_name)->get();
              /*   $users = AdminUser::select('id')->where('id', auth()->user()->id)->get();
                 return $this->getFacilityUserIds($users);*/
             }

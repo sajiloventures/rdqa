@@ -33,7 +33,17 @@
 
                 // turn off x axis ticks since we are managing it ourselves
                 chart.options = Chart.helpers.configMerge(chart.options, {
+                    
+                    responsive: true,
+
                     scales: {
+                          yAxes: [{
+                ticks: {
+                   // display:false,
+                    beginAtZero: true
+                   // fontSize: 0,
+                }
+            }],
                         xAxes: [{
                             ticks: {
                                 display: false,

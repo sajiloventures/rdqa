@@ -70,7 +70,7 @@
      data-widget-sortable="false">
     <header>
 
-        <h2>Cross check 1</h2>
+        <h2>Register vs Tally sheet</h2>
 
         <div class="header-dropdown-list crossCheck1CheckBox" style="line-height: 34px;">
             <div class="btn-group">
@@ -133,7 +133,7 @@
      data-widget-sortable="false">
     <header>
 
-        <h2>Cross check 2</h2>
+        <h2>Register vs Monthly monitoring sheet</h2>
         <div class="header-dropdown-list crossCheck2CheckBox" style="line-height: 34px;">
 
             <div class="btn-group">
@@ -196,7 +196,7 @@
      data-widget-sortable="false">
     <header>
 
-        <h2>Cross check 3</h2>
+        <h2>Tally vs Monthly monitoring sheet</h2>
 
         <div class="header-dropdown-list crossCheck3CheckBox" style="line-height: 34px;">
             <div class="btn-group">
